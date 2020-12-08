@@ -35,7 +35,7 @@ def traverse(coordinates, slope_x, slope_y):
     return tree_count
 
 def checkTree(coordinates, x , y):
-    print("checking tree at (x,y) ({},{})".format(x,y))
+    #print("checking tree at (x,y) ({},{})".format(x,y))
     char = coordinates[y][x]
     if char == "#":
         return True
