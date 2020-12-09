@@ -23,10 +23,7 @@ def main():
     valid_passport_count = 0
     for passport in valid_passports:
         if validPassport(passport):
-            valid_passport_count += 1
-            for w in sorted(passport, key=passport.get, reverse=True):
-                print(w, passport[w])
-    
+            valid_passport_count += 1    
     print("number of valid passports: {}".format(valid_passport_count))
 
 def getPassports():
@@ -77,7 +74,7 @@ def validYear(yr, min, max):
         return False
     try:
         yr_int = int(yr)
-        return yr_int >= min & yr_int <= max
+        return (yr_int >= min) & (yr_int <= max)
     except ValueError:
         return False
 
