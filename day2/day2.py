@@ -3,22 +3,30 @@ import os
 
 def main():
     print("===== Part 1 =====")
+    valid_count = part1()
+    print("Numer of valid passwords: {}".format(valid_count))
+
+    print("===== Part 2 =====")
+    valid_count = part2()
+    print("Numer of valid passwords: {}".format(valid_count))
+
+def part1():
     inputs = getInputs()
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword1(input)
         if isValidPassword:
             valid_count+=1
-    print("Numer of valid passwords: {}".format(valid_count))
+    return str(valid_count)
 
-    print("===== Part 2 =====")
+def part2():
     inputs = getInputs()
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword2(input)
         if isValidPassword:
             valid_count+=1
-    print("Numer of valid passwords: {}".format(valid_count))
+    return str(valid_count)
 
 def getInputs():
     inputs = []

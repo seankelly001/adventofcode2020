@@ -1,20 +1,28 @@
+
+
 import os
 
 def main():
-    inputs = getNumInputs()
-
+    
     print("===== Part 1 =====")
-    numA, numB = get2Nums(inputs)
-    print("a: {}, b: {}".format(numA, numB))
-    answer1 = numA * numB
+    answer1 = part1()
     print("answer is: {}".format(answer1))
 
     print("===== Part 2 =====")
-    numA, numB, numC = get3Nums(inputs)
-    print("a: {}, b: {}, c: {}".format(numA, numB, numC))
-    answer2 = numA * numB * numC
+    answer2 = part2()
     print("answer is: {}".format(answer2))
 
+def part1():
+    inputs = getNumInputs()
+    numA, numB = get2Nums(inputs)
+    answer = numA * numB
+    return str(answer)
+
+def part2():
+    inputs = getNumInputs()
+    numA, numB, numC = get3Nums(inputs)
+    answer = numA * numB * numC
+    return str(answer)
 
 def getNumInputs():
     inputs = []

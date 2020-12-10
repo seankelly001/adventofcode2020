@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>{{ title }} - AdventOfCode 2020</title>
+    </head>
+    <body>
+        <ul>
+            {% for item in data %}
+            <li><a href={{ item.link }}>{{ item.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
