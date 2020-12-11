@@ -1,4 +1,5 @@
-import os
+from myutils import files
+
 def main():
 
     print("===== Part 1 =====")
@@ -11,7 +12,7 @@ def main():
 
 def part1():
 
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day6-input.txt")
     groups = getGroupsAsString(inputs)
     sum_counts = 0
 
@@ -23,7 +24,7 @@ def part1():
 
 def part2():
 
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day6-input.txt")
     groups = getGroups(inputs)
     sum_counts = 0
     for group in groups:
@@ -71,14 +72,6 @@ def getCommon(sx):
             common = common.intersection(set(s))
 
     return "".join(common)
-
-def getInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(line)
-    return inputs
 
 if __name__ == "__main__":
     main()

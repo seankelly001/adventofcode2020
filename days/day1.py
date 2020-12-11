@@ -1,6 +1,5 @@
-
-
 import os
+from myutils import files
 
 def main():
     
@@ -13,24 +12,24 @@ def main():
     print("answer is: {}".format(answer2))
 
 def part1():
-    inputs = getNumInputs()
+    inputs = files.getNumInputs("../inputs/day1-input.txt")
     numA, numB = get2Nums(inputs)
     answer = numA * numB
     return str(answer)
 
 def part2():
-    inputs = getNumInputs()
+    inputs = files.getNumInputs("../inputs/day1-input.txt")
     numA, numB, numC = get3Nums(inputs)
     answer = numA * numB * numC
     return str(answer)
 
-def getNumInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(int(line))
-    return inputs
+# def getNumInputs():
+#     inputs = []
+#     path = os.path.join(os.path.dirname(__file__), '../inputs/day1-input.txt')
+#     with open(path) as file:
+#         for line in file:
+#             inputs.append(int(line))
+#     return inputs
 
 def get2Nums(inputs):
 

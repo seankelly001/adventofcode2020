@@ -1,5 +1,5 @@
 import re
-import os
+from myutils import files
 
 def main():
     print("===== Part 1 =====")
@@ -11,7 +11,7 @@ def main():
     print("Numer of valid passwords: {}".format(valid_count))
 
 def part1():
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day2-input.txt")
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword1(input)
@@ -20,21 +20,13 @@ def part1():
     return str(valid_count)
 
 def part2():
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day2-input.txt")
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword2(input)
         if isValidPassword:
             valid_count+=1
     return str(valid_count)
-
-def getInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(line)
-    return inputs
 
 def checkValidPassword1(input):
     #<int>-<int> <char>: password

@@ -1,4 +1,4 @@
-import os
+from myutils import files
 import math 
 
 def main():
@@ -11,12 +11,12 @@ def main():
     print("Number of trees: {}".format(answer))
 
 def part1():
-    coordinates = getInputs()
+    coordinates = files.getInputs("../inputs/day3-input.txt", strip=True)
     tree_count = traverse(coordinates, 3, 1)
     return str(tree_count)
 
 def part2():
-    coordinates = getInputs()
+    coordinates = files.getInputs("../inputs/day3-input.txt", strip=True)
     slopes = [(1,1), (3,1), (5,1), (7,1), (1, 2)]
     tree_counts = []
     for slope in slopes:
@@ -51,13 +51,6 @@ def checkTree(coordinates, x , y):
         return False
     raise Exception("unknown char: <{}>".format(char))
 
-def getInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(line.strip())
-    return inputs
 
 if __name__ == "__main__":
     main()

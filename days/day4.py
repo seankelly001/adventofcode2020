@@ -1,4 +1,4 @@
-import os
+from myutils import files
 import re
 
 def main():
@@ -31,23 +31,22 @@ def part2():
 
 def getPassports():
 
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
+    inputs = files.getInputs("../inputs/day4-input.txt")
     passport_index = 0
     passports = []
 
-    with open(path) as file:
-        for line in file:
-            if line.isspace():
-                passport_index += 1
-                continue
-           
-            if passport_index >= len(passports):
-                 passports.append({})
-            passport_parts = line.split()
-            for part in passport_parts:
-                k = part.split(":")[0]
-                v = part.split(":")[1]
-                passports[passport_index][k] = v
+    for line in inputs:
+        if line.isspace():
+            passport_index += 1
+            continue
+        
+        if passport_index >= len(passports):
+                passports.append({})
+        passport_parts = line.split()
+        for part in passport_parts:
+            k = part.split(":")[0]
+            v = part.split(":")[1]
+            passports[passport_index][k] = v
     return passports
 
 def validPassport(passport):

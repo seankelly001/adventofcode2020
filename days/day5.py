@@ -1,4 +1,5 @@
-import os
+from myutils import files
+
 def main():
 
     print("===== Part 1 =====")
@@ -10,13 +11,13 @@ def main():
     print("Missing seat id: {}".format(missing_seat_id))
 
 def part1():
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day5-input.txt", strip=True)
     seat_ids = getSeatIDs(inputs)
     highest_seat_id = seat_ids[len(seat_ids)-1]
     return str(highest_seat_id)
 
 def part2():
-    inputs = getInputs()
+    inputs = files.getInputs("../inputs/day5-input.txt", strip=True)
     seat_ids = getSeatIDs(inputs)
     missing_seat_id = getMissingSeatID(seat_ids)
     return str(missing_seat_id)
@@ -49,14 +50,6 @@ def getMissingSeatID(seat_ids):
         if(next_seat_id - current_seat_id == 2):
             return current_seat_id+1
     return -1
-
-def getInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(line.strip())
-    return inputs
 
 if __name__ == "__main__":
     main()
