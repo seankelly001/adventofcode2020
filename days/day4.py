@@ -1,54 +1,52 @@
-import os
+from myutils import files
 import re
 
 def main():
+    print("===== Part 1 =====")
+    valid_passport_count = part1()
+    print("number of valid passports: {}".format(valid_passport_count))
 
-    
+    print("===== Part 2 =====")
+    valid_passport_count = part2()
+    print("number of valid passports: {}".format(valid_passport_count))
+
+def part1():
     mandatory_keys = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"] #cid is optional
     passports = getPassports()
-    print("number of passports: {}".format(len(passports)))
-
-    print("===== Part 1 =====")
-    valid_passports = []
     valid_passport_count = 0
     for passport in passports:
         valid = all(field in passport for field in mandatory_keys)
         if valid:
             valid_passport_count += 1
-            valid_passports.append(passport)
+    return str(valid_passport_count)
 
-    print("number of valid passports: {}".format(valid_passport_count))
-
-    print("===== Part 2 =====")
+def part2():
+    mandatory_keys = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"] #cid is optional
+    passports = getPassports()
     valid_passport_count = 0
-    for passport in valid_passports:
-        if validPassport(passport):
-            valid_passport_count += 1
-            for w in sorted(passport, key=passport.get, reverse=True):
-                print(w, passport[w])
-    
-    print("number of valid passports: {}".format(valid_passport_count))
+    for passport in passports:
+        if (all(field in passport for field in mandatory_keys)) and (validPassport(passport)):
+          valid_passport_count += 1
+    return str(valid_passport_count)
 
 def getPassports():
 
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
+    inputs = files.getInputs("../inputs/day4-input.txt")
     passport_index = 0
     passports = []
 
-    with open(path) as file:
-        for line in file:
-            if line.isspace():
-                passport_index += 1
-                continue
-           
-            if passport_index >= len(passports):
-                 passports.append({})
-            passport_string = line
-            passport_parts = line.split()
-            for part in passport_parts:
-                k = part.split(":")[0]
-                v = part.split(":")[1]
-                passports[passport_index][k] = v
+    for line in inputs:
+        if line.isspace():
+            passport_index += 1
+            continue
+        
+        if passport_index >= len(passports):
+                passports.append({})
+        passport_parts = line.split()
+        for part in passport_parts:
+            k = part.split(":")[0]
+            v = part.split(":")[1]
+            passports[passport_index][k] = v
     return passports
 
 def validPassport(passport):
@@ -77,7 +75,7 @@ def validYear(yr, min, max):
         return False
     try:
         yr_int = int(yr)
-        return yr_int >= min & yr_int <= max
+        return (yr_int >= min) & (yr_int <= max)
     except ValueError:
         return False
 
@@ -85,9 +83,9 @@ def validYear(yr, min, max):
 # If cm, the number must be at least 150 and at most 193.
 # If in, the number must be at least 59 and at most 76.
 def validHGT(hgt):
-    repl_cm = re.compile('^\d+cm')
-    repl_in = re.compile('^\d+in')
-    repl_num = re.compile('^\d+')
+    repl_cm = re.compile(r'^\d+cm')
+    repl_in = re.compile(r'^\d+in')
+    repl_num = re.compile(r'^\d+')
 
     #check cm
     if re.search(repl_cm, hgt):

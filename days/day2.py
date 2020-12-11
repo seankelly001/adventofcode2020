@@ -1,32 +1,32 @@
 import re
-import os
+from myutils import files
 
 def main():
     print("===== Part 1 =====")
-    inputs = getInputs()
+    valid_count = part1()
+    print("Numer of valid passwords: {}".format(valid_count))
+
+    print("===== Part 2 =====")
+    valid_count = part2()
+    print("Numer of valid passwords: {}".format(valid_count))
+
+def part1():
+    inputs = files.getInputs("../inputs/day2-input.txt")
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword1(input)
         if isValidPassword:
             valid_count+=1
-    print("Numer of valid passwords: {}".format(valid_count))
+    return str(valid_count)
 
-    print("===== Part 2 =====")
-    inputs = getInputs()
+def part2():
+    inputs = files.getInputs("../inputs/day2-input.txt")
     valid_count = 0
     for input in inputs:
         isValidPassword = checkValidPassword2(input)
         if isValidPassword:
             valid_count+=1
-    print("Numer of valid passwords: {}".format(valid_count))
-
-def getInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(line)
-    return inputs
+    return str(valid_count)
 
 def checkValidPassword1(input):
     #<int>-<int> <char>: password

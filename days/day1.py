@@ -1,28 +1,35 @@
 import os
+from myutils import files
 
 def main():
-    inputs = getNumInputs()
-
+    
     print("===== Part 1 =====")
-    numA, numB = get2Nums(inputs)
-    print("a: {}, b: {}".format(numA, numB))
-    answer1 = numA * numB
+    answer1 = part1()
     print("answer is: {}".format(answer1))
 
     print("===== Part 2 =====")
-    numA, numB, numC = get3Nums(inputs)
-    print("a: {}, b: {}, c: {}".format(numA, numB, numC))
-    answer2 = numA * numB * numC
+    answer2 = part2()
     print("answer is: {}".format(answer2))
 
+def part1():
+    inputs = files.getNumInputs("../inputs/day1-input.txt")
+    numA, numB = get2Nums(inputs)
+    answer = numA * numB
+    return str(answer)
 
-def getNumInputs():
-    inputs = []
-    path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    with open(path) as file:
-        for line in file:
-            inputs.append(int(line))
-    return inputs
+def part2():
+    inputs = files.getNumInputs("../inputs/day1-input.txt")
+    numA, numB, numC = get3Nums(inputs)
+    answer = numA * numB * numC
+    return str(answer)
+
+# def getNumInputs():
+#     inputs = []
+#     path = os.path.join(os.path.dirname(__file__), '../inputs/day1-input.txt')
+#     with open(path) as file:
+#         for line in file:
+#             inputs.append(int(line))
+#     return inputs
 
 def get2Nums(inputs):
 
