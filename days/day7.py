@@ -25,10 +25,10 @@ def part1():
 
 def part2():
     inputs = files.getInputs("../inputs/day7-input.txt", strip=True)
-    inputs = files.getInputs("../inputs/test.txt", strip=True)
+    #inputs = files.getInputs("../inputs/test.txt", strip=True)
     rules = getRules(inputs)
     bag_count = getBagCount(rules, "shiny gold")
-    return str(bag_count)
+    return str(bag_count-1)
 
 def checkBagContainsShinyGold(rules, rule):
     if rules[rule] == []:
@@ -42,17 +42,18 @@ def checkBagContainsShinyGold(rules, rule):
                 return True
     return False
 
+#126...
 def getBagCount(rules, rule):
     if rules[rule] == []:
         return 1
-    bag_counts = []
+    bag_count = 1
     for r in list(set(rules[rule])):
-        #bag_count = bag_count + (getBagCount(rules, r) * rules[rule].count(r))
-        bag_counts.append((getBagCount(rules, r) * rules[rule].count(r)))
+        bag_count = bag_count + (getBagCount(rules, r) * rules[rule].count(r))
+        #bag_counts.append((getBagCount(rules, r) * rules[rule].count(r)))
     # for r in rules[rule]:
     #     bag_count += (getBagCount(rules, r))
-    #print("{} has {}".format(rule, bag_count))
-    return bag_counts
+    print("{} has {}".format(rule, bag_count))
+    return bag_count
 
 def getRules(inputs):
     rules = {}
